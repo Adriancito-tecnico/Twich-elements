@@ -1,0 +1,29 @@
+name: Compilar para Linux Compatible
+on: [push, workflow_dispatch]
+
+jobs:
+  linux-build:
+    # Usamos la version 20.04 para maxima compatibilidad con Chromebooks
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Descargar codigo
+        uses: actions/checkout@v4
+    
+      - name: Configurar Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+
+      - name: Instalar PyInstaller
+        run: pip install pyinstaller
+        
+      - name: Crear Binario Linux
+        run: |
+          # El nombre del archivo debe ser exacto al que tienes en GitHub
+          pyinstaller --onefile --name "Sorteo_Linux" "Sorteos-twich V.1.0.0 .py"
+
+      - name: Subir el archivo
+        uses: actions/upload-artifact@v4
+        with:
+          name: Programa_Linux_Listo
+          path: dist/Sorteo_Linux
