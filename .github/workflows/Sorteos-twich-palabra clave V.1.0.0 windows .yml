@@ -39,5 +39,5 @@ jobs:
     - name: Subir el EXE Final
       uses: actions/upload-artifact@v4
       with:
-        name: "Sorteos-twich-TrikiVals-V1-0-0"
+        name: "Sorteos-twich-TrikiVals-V1.0.1"
         path: "**/dist/*.exe"
