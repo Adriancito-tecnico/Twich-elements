@@ -1,0 +1,43 @@
+name: Compilar Sorteo Final 1.0.0
+
+on: [push, workflow_dispatch]
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+    - name: Descargar Código
+      uses: actions/checkout@v4
+
+    - name: Configurar Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.10'
+
+    - name: Instalar PyInstaller
+      run: |
+        python -m pip install --upgrade pip
+        pip install pyinstaller
+
+    - name: Crear Ejecutable
+      shell: pwsh
+      run: |
+        $folder = Get-ChildItem -Directory -Filter "*Sorteos*" | Select-Object -First 1
+        cd $folder.FullName
+        
+        $subfolder = Get-ChildItem -Directory -Filter "*Palabra de entrada*" | Select-Object -First 1
+        cd $subfolder.FullName
+        
+        $subfolder = Get-ChildItem -Directory -Filter "*1.0.1*" | Select-Object -First 1
+        cd $subfolder.FullName
+        
+        $pyFile = Get-ChildItem -File -Filter "*1.0.1*.py" | Select-Object -First 1
+        
+        pyinstaller --onefile --clean -n "Sorteos-twich V.1.0.0" $pyFile.Name
+
+    - name: Subir el EXE Final
+      uses: actions/upload-artifact@v4
+      with:
+        name: "Sorteos-twich-TrikiVals-V1.0.1"
+        path: "**/dist/*.exe"
