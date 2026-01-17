@@ -34,7 +34,7 @@ jobs:
         
         $pyFile = Get-ChildItem -File -Filter "*1.0.1*.py" | Select-Object -First 1
         
-        pyinstaller --onefile --clean -n "Sorteos-twich V.1.0.0" $pyFile.Name
+        pyinstaller --onefile --clean -n "Sorteos-twich V.1.0.1" $pyFile.Name
 
     - name: Subir el EXE Final
       uses: actions/upload-artifact@v4
