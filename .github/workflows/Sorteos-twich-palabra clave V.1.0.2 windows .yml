@@ -1,5 +1,4 @@
 name: Sorteos-twich-palabra clave V.1.0.2 windows
-
 on: [push, workflow_dispatch]
 
 jobs:
@@ -39,5 +38,5 @@ jobs:
     - name: Subir el EXE Final
       uses: actions/upload-artifact@v4
       with:
-        name: "Sorteos-twich-TrikiVals-V1.0.2"
+        name: "Sorteos-twich-palabra clave V.1.0.2 windows"
         path: "**/dist/*.exe"
