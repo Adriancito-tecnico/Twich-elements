@@ -1,4 +1,4 @@
-name: Sorteos-twich-palabra clave windows
+name: Sorteos-twich-palabra clave V1.2.0 windows
 on: [push, workflow_dispatch]
 
 jobs:
